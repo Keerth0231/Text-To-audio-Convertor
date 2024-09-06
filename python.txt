@@ -1,0 +1,40 @@
+import pyttsx3
+import pdfplumber
+import tkinter as tk 
+from tkinter import filedialog
+import os
+root = tk.Tk()
+root.withdraw()
+
+PDF PATH = filedialog.askopenfilename()
+PDF_DIR = os.path.dirname(PDF_PATH)
+PDF_NAME = os.path.basename(PDF_PATH)
+
+with pdfplumber.open(PDF_PATH)as pdf:
+     book_content=""
+
+     speaker=pyttsx3.init()
+
+     speaker.setProperty('rate', 130)
+     voices speaker.getProperty("voices")
+
+     speaker.setProperty('voice', voices[1].id)
+
+     for page in pdf.pages:
+          text= page.extract text()
+     if text is not none:
+          book_content+=text
+     speaker=pyttsx3.init()
+     speaker.setProperty('rate', 180)
+     voices=speaker.getProperty('voices')
+     speaker.setProperty('voice", voices[1].id)
+     for page in pdf.pages:
+
+           text page.extract_text()
+ 
+     if text is not None:
+           book_content+=text
+
+     speaker.save to file(book content, PDF_NAME.replace(".pdf",".mp3"))
+     speaker.runAndWait()
+     os.system(f"start (PDF_DIR}")
